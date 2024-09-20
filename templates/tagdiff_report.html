@@ -1,0 +1,90 @@
+{# templates/tagdiff_report.txt #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tag Diff Report</title>
+    <style>
+        body {
+            padding-left: 50px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        td, th {
+            border: 1px solid orange;
+            padding-left: 5px;
+            padding-right: 5px;
+        }    
+        .fl {
+            float: left;
+            padding-right: 25px;
+        }
+        .sp {
+            width: 5px;
+            background-color: orange;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>WWSGs DTP vs. OSM tags</h1>
+    
+    <div>Generiert am: {{ generated_at }} / XCTrails.org</div>
+    <div>Unterschiede: {{ count }}</div>
+
+    <div><br/></div>
+
+    <table>
+        <tr>
+            <th colspan="5">DTP Daten</th>
+            <th class="sp"></th>
+            <th colspan="3">OSM Daten</th>
+        </tr>
+        <tr>
+            <th>OSM ID</th>
+            <th>Name/DTP Link</th>
+            <th>Landkreis</th>
+            <th>DTP access</th>
+            <th>DTP access conditional</th>
+            <th class="sp"></th>
+            <th>OSM access</th>
+            <th>OSM access conditional</th>
+            <th>OSM seasonal</th>
+        </tr>
+        {% for diff in diffs %}
+        <tr>
+            <td><a target="_osm" href="https://www.openstreetmap.org/{{ diff.osm_id }}">{{ diff.osm_id }}</a></td>
+            <td><a target="_dtp" href="{{ diff.dtp_url }}">{{ diff.name }}</a></td>
+            <td>{{ diff.district }}</td>
+            <td>{{ diff.dtp_access }}</td>
+            <td>{{ diff.dtp_access_c }}</td>
+            <td class="sp"></td>
+            <td>{{ diff.osm_access }}</td>
+            <td>{{ diff.osm_access_c }}</td>
+            <td>{{ diff.osm_seasonal }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!--  # FIXME: there are a couple of protect_class=4/7 areas in DTP cat 18/19 which are not in Schongebiete.json
+
+    <h1>DTP Gebiete mit kaputtem OSM Link</h1>
+
+    <table>
+        <tr>
+            <th>Name/DTP Link</th>
+            <th>OSM ID</th>
+        </tr>
+        {% for diff in not_founds %}
+        <tr>
+            <td><a target="_dtp" href="{{ diff.dtp_url }}">{{ diff.name }}</a></td>
+            <td><a target="_osm" href="https://www.openstreetmap.org/{{ diff.osm_id }}">{{ diff.osm_id }}</a></td>
+        </tr>
+        {% endfor %}
+    </table> -->
+
+</body>
+</html>

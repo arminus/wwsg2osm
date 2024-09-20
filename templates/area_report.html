@@ -1,0 +1,129 @@
+{# templates/area_report.txt #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Results</title>
+    <style>
+        body {
+            padding-left: 50px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        td, th {
+            border: 1px solid orange;
+        }    
+        .fl {
+            float: left;
+            padding-right: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>DTP -&gt; OSM Category 18/19 mapping status</h1>
+    
+    <div>Date: {{ generated_at }} / XCTrails.org</div>
+
+    <div class="fl">
+        <h2>Category 18</h2>
+
+        <h3>Removed in OSM</h3>
+        <table>
+            {% for area in removed_in_osm_18 %}
+            <tr>
+                <td><a target="_dtp" href="{{ area.dtp_url }}">{{ area.name_de }}</a></td>
+                <td><a target="_osm" href="https://www.openstreetmap.org/{{ area.osm_id }}">{{ area.osm_id }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <h3>Not in OSM</h3>
+        <table>
+            {% for area in not_in_osm_18 %}
+            <tr>
+                <td><a target="_dtp" href="{{ area.dtp_url }}">{{ area.name_de }}</a></td>
+                <td><a target="_osm" href="https://www.xctrails.org/schongebiete/SchongebieteWMSLayer.html?lat={{ area.centroid.lat }}&lon={{ area.centroid.lon }}">OSM Karte</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="fl">
+        <h2>Category 19</h2>
+
+        <h3>Removed in OSM</h3>
+        <table>
+            {% for area in removed_in_osm_19 %}
+            <tr>
+                <td><a target="_dtp" href="{{ area.dtp_url }}">{{ area.name_de }}</a></td>
+                <td><a target="_osm" href="https://www.openstreetmap.org/{{ area.osm_id }}">{{ area.osm_id }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <h3>Not in OSM</h3>
+        <table>
+            {% for area in not_in_osm_19 %}
+            <tr>
+                <td><a target="_dtp" href="{{ area.dtp_url }}">{{ area.name_de }}</a></td>
+                <td><a target="_osm" href="https://www.xctrails.org/schongebiete/SchongebieteWMSLayer.html?lat={{ area.centroid.lat }}&lon={{ area.centroid.lon }}">OSM Karte</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- <div style="clear: both"></div>
+
+    <div class="fl">
+        <h2>Category 20</h2>
+
+        <h3>Removed in OSM</h3>
+        <table>
+            {% for area in removed_in_osm_20 %}
+            <tr>
+                <td><a target="_dtp" href="{{ area.dtp_url }}">{{ area.name_de }}</a></td>
+                <td><a target="_osm" href="https://www.openstreetmap.org/{{ area.osm_id }}">{{ area.osm_id }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <h3>Not in OSM</h3>
+        <table>
+            {% for area in not_in_osm_20 %}
+            <tr>
+                <td><a target="_dtp" href="{{ area.dtp_url }}">{{ area.name_de }}</a></td>
+                <td><a target="_osm" href="https://www.xctrails.org/schongebiete/SchongebieteWMSLayer.html?lat={{ area.centroid.lat }}&lon={{ area.centroid.lon }}">OSM Karte</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="fl">
+        <h2>Category 41</h2>
+
+        <h3>Removed in OSM</h3>
+        <table>
+            {% for area in removed_in_osm_41 %}
+            <tr>
+                <td><a target="_dtp" href="{{ area.dtp_url }}">{{ area.name_de }}</a></td>
+                <td><a target="_osm" href="https://www.openstreetmap.org/{{ area.osm_id }}">{{ area.osm_id }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <h3>Not in OSM</h3>
+        <table>
+            {% for area in not_in_osm_41 %}
+            <tr>
+                <td><a target="_dtp" href="{{ area.dtp_url }}">{{ area.name_de }}</a></td>
+                <td><a target="_osm" href="https://www.xctrails.org/schongebiete/SchongebieteWMSLayer.html?lat={{ area.centroid.lat }}&lon={{ area.centroid.lon }}">OSM Karte</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div> -->
+
+</body>
+</html>
